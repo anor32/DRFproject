@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'redis',
     #my apps
-
+    'users',
+    'sections',
 
 ]
 
@@ -160,7 +161,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 cache_status = os.getenv('CACHE_ENABLED')
 CACHE_ENABLED = cache_status
@@ -188,7 +189,7 @@ SIMPLE_JWT ={
 
 CORS_ALLOWED_ORIGINS =[
     'http://read-only.example.com',
-    'http;//read-and-write.example.com'
+    'http://read-and-write.example.com'
 ]
 
 CSRF_TRUSTED_ORIGINS=[
