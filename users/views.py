@@ -23,7 +23,9 @@ class UserRetrieveAPIView(RetrieveAPIView):
 
 class UserUpdateAPIView(UpdateAPIView):
     queryset = User.objects.all()
+    serializer_class = UserUpdateSerializer
     permission_classes = (AllowAny,)
+
 
     def get_queryset(self):
         user = self.request.user
@@ -31,7 +33,6 @@ class UserUpdateAPIView(UpdateAPIView):
 
 class UserDestroyApiView(DestroyAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
     permission_classes = (AllowAny,)
 
 

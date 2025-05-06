@@ -14,7 +14,7 @@ class SectionSerializer(ModelSerializer):
 class SectionListSerializer(ModelSerializer):
     section_content_title = SerializerMethodField()
 
-    def get_section_context_data(self, section):
+    def get_section_content_title(self, section):
         return  ContentSerializer(Content.objects.filter(section=section), many=True).data
 
 class Meta:
