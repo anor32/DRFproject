@@ -12,9 +12,9 @@ urlpatterns = [
 
     path('', UserListApiView.as_view(),name='users_list'),
     path('create/', UserCreateApiView.as_view(),name='user_create'),
-    path('<int:pk>/update/', never_cache(UserUpdateAPIView.as_view()),name='user_create'),
-    path('<int:pk>/delete/', UserDestroyApiView.as_view(),name='user_create'),
-    path('<int:pk>/detail/', UserRetrieveAPIView.as_view(),name='user_create'),
+    path('<int:pk>/update/', never_cache(UserUpdateAPIView.as_view()),name='user_update'),
+    path('<int:pk>/delete/', UserDestroyApiView.as_view(),name='user_delete'),
+    path('<int:pk>/detail/', UserRetrieveAPIView.as_view(),name='user_detail'),
 
     path('token/',TokenObtainPairView.as_view(),name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(),name='token_refresh')

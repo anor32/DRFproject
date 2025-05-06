@@ -42,7 +42,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #app urls
     path('users/', include('users.urls', namespace='users')),
-    # path('', include('section.urls', name_space='sections')),
+    path('', include('sections.urls', namespace='sections')),
 
     #documentation urls
     path('swagger/<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

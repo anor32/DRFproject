@@ -17,6 +17,6 @@ class SectionListSerializer(ModelSerializer):
     def get_section_content_title(self, section):
         return  ContentSerializer(Content.objects.filter(section=section), many=True).data
 
-class Meta:
-    model = Section
-    fields = ('id', 'title', 'SectionContentTitle')
+    class Meta:
+        model = Section
+        fields = ('id', 'title', 'section_content_title')
