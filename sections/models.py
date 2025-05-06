@@ -19,12 +19,12 @@ class Section(models.Model):
 class Content(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('Section'))
     title = models.CharField(max_length=150,verbose_name=_("Title"))
-    content = models.CharField(verbose_name=("Content"))
+    content = models.TextField(verbose_name=("Content"))
 
     def __str__(self):
         return f"{self.title}"
 
     class Meta:
-        verbose_name = _('Section Content')
-        verbose_name_plural = _("Section Contents")
+        verbose_name = _('Content')
+        verbose_name_plural = _("Contents")
         ordering = ['id']
