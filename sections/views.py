@@ -78,7 +78,7 @@ class ContentDestroyAPiView(DestroyAPIView):
 
 
 
-class QuestionListApiView:
+class QuestionListApiView(ListAPIView):
     serializer_class =  QuestionSerializer
     queryset = Question.objects.all()
     # permission_classes = (IsAuthenticated,)
