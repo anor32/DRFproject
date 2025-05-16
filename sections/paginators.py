@@ -10,3 +10,5 @@ class SectionContentPaginator(PageNumberPagination):
     page_size = 10
 
 
+class QuestionPaginator(SectionPaginator):
+    page_size = 5

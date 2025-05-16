@@ -2,16 +2,17 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from os import path as p
 from sections.apps import SectionsConfig
-from sections.models import Section, Content
+from sections.models import Section, Content, Question
 
 from sections.views import SectionListApiView, SectionDestroyAPIView, SectionCreateAPIView, SectionUpdateAPIView, \
-    SectionRetrieveApiView, ContentCreateApiView, ContentUpdateAPIView, ContentRetrieveApiView, ContentDestroyAPiView, ContentListApiView
+    SectionRetrieveApiView, ContentCreateApiView, ContentUpdateAPIView, ContentRetrieveApiView, ContentDestroyAPiView, \
+    ContentListApiView, QuestionRetrieveApiView, QuestionListApiView
 
 app_name = SectionsConfig.name
 
 router = DefaultRouter()
 
-
+questions ='questions/'
 section = 'section/'
 create = 'create/'
 update = 'update/'
@@ -31,6 +32,9 @@ urlpatterns = [
                   path(p.join(content, create), ContentCreateApiView.as_view(), name='content_create'),
                   path(p.join(content, update), ContentUpdateAPIView.as_view(), name='content_update'),
                   path(p.join(content, int_pk), ContentRetrieveApiView.as_view(), name='content_detail'),
-                  path(p.join(content, delete), ContentDestroyAPiView.as_view(), name='content_delete')
+                  path(p.join(content, delete), ContentDestroyAPiView.as_view(), name='content_delete'),
+                   #question urls
+                  path(p.join(questions, ), QuestionListApiView.as_view(), name='content_delete'),
+                  path(p.join(questions, int_pk), QuestionRetrieveApiView.as_view(), name='content_delete'),
 
               ] + router.urls
