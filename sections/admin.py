@@ -14,7 +14,7 @@ class SectionAdmin(admin.ModelAdmin):
 
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'section','ttile')
+    list_display = ('id', 'section','title')
     list_filter = ('section',)
     ordering = ('id','section')
 
