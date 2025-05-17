@@ -1,0 +1,24 @@
+[
+    {
+        "model": "sections.Question",
+        "pk": 2,
+        "fields": {
+            "question_section": 5,
+            "description": "test question desctiption.",
+            "question": "test question ",
+            "answer": "test answer"
+        }
+    },
+
+    {
+        "model": "sections.Question",
+        "pk": 3,
+        "fields": {
+            "question_section": 4,
+            "description": "Подлость",
+            "question": "Кто не скидывает фикстуры ",
+            "answer": "dmitry"
+        }
+    }
+
+]

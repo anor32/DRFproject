@@ -1,0 +1,64 @@
+[
+  {
+    "model": "sections.section",
+    "pk": 2,
+    "fields": {
+      "title": "Section2",
+      "description": "Simple Section 2"
+    }
+  },
+  {
+    "model": "sections.section",
+    "pk": 4,
+    "fields": {
+      "title": "Section3",
+      "description": "Simple Section 3"
+    }
+  },
+  {
+    "model": "sections.section",
+    "pk": 5,
+    "fields": {
+      "title": "Section4",
+      "description": "Simple Section 4"
+    }
+  },
+  {
+    "model": "sections.content",
+    "pk": 2,
+    "fields": {
+      "section": 4,
+      "title": "test content title",
+      "content": "test Content"
+    }
+  },
+  {
+    "model": "sections.content",
+    "pk": 3,
+    "fields": {
+      "section": 2,
+      "title": "test content title1",
+      "content": "test Content1"
+    }
+  },
+  {
+    "model": "sections.question",
+    "pk": 2,
+    "fields": {
+      "question_section": 5,
+      "description": "test question desctiption.",
+      "question": "test question ",
+      "answer": "test answer"
+    }
+  },
+  {
+    "model": "sections.question",
+    "pk": 3,
+    "fields": {
+      "question_section": 4,
+      "description": "Подлость",
+      "question": "Кто не скидывает фикстуры ",
+      "answer": "dmitry"
+    }
+  }
+]
