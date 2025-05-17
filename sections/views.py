@@ -59,7 +59,7 @@ class ContentRetrieveApiView(RetrieveAPIView):
     # permission_classes = (IsAuthenticated,)
 
 
-class ContentCreateApiView(RetrieveAPIView):
+class ContentCreateApiView(CreateAPIView):
     serializer_class = ContentSerializer
     queryset = Content.objects.all()
     # permission_classes = (IsAuthenticated,)
@@ -79,7 +79,7 @@ class ContentDestroyAPiView(DestroyAPIView):
 
 
 class QuestionListApiView(ListAPIView):
-    serializer_class =  QuestionSerializer
+    serializer_class =  QuestionSectionSerializer
     queryset = Question.objects.all()
     # permission_classes = (IsAuthenticated,)
     pagination_class = QuestionPaginator
@@ -87,16 +87,18 @@ class QuestionListApiView(ListAPIView):
 
 
 class QuestionRetrieveApiView(RetrieveAPIView):
-    serializer_class = QuestionSectionSerializer
+    serializer_class = QuestionSerializer
     queryset = Question.objects.all()
 
     # permission_classes = (IsAuthenticated,)
 
     def post(self,request ,*args, **kwargs):
         answers = [question.answer for question in Question.objects.all()]
-        answer = answers[self.kwargs.get('pk')-1].strip().lower()
+        print(answers)
+        answer = answers[self.kwargs.get('pk')-2].strip().lower()
         user_answer = request.data.get('user_answer').strip().lower()
         is_correct = user_answer == answer
+        print(answer, user_answer)
         return Response({'is_correct':is_correct})
 
 
