@@ -12,14 +12,14 @@ class QuestionTestCase(APITestCase):
     def setUp(self):
         self.user = get_admin_user()
         response = self.client.post('/users/token/', {"email": self.user.email, 'password': 'qwerty'})
-        self.access_token = response.json.get('access')
+        self.access_token = response.json().get('access')
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
         self.test_section = Section.objects.create(
             title="Test Question",
             description="Test Description",
         )
-        self.test_content = Content.otbjects.create(
-            section=section.test_section,
+        self.test_content = Content.objects.create(
+            section=self.test_section,
             title='Test Title',
             content="Test Content",
         )
@@ -32,17 +32,19 @@ class QuestionTestCase(APITestCase):
         )
 
     def test_13_question_list(self):
-        response =self.client.get('/question/')
+        response =self.client.get('/questions/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json()['results'][0]['question'], "Test Question", )
+
+        self.assertEqual(response.json()['results'][0]['question_section'], "Test Question", )
 
 
     def test_14_question_is_correct(self):
-        response = self.client.get(f'/question/{self.test_question.id}/',)
+        response = self.client.get(f'/questions/{self.test_question.id}/')
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()['question'],'Test Question')
 
-        response = self.client.get(f'/question/{self.test_question.id - 1}/', {"user_answer": "Test Answer"})
+        response = self.client.post(f'/questions/{self.test_question.id -1 }/', {"user_answer": "Test Answer"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get('is_correct'), True, )
 

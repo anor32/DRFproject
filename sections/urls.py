@@ -29,12 +29,12 @@ urlpatterns = [
 
                   # Content urlpatterns
                   path(p.join(content), ContentListApiView.as_view(), name='content_list'),
-                  path(p.join(content, int_pk ,create), ContentCreateApiView.as_view(), name='content_create'),
+                  path(p.join(content ,create), ContentCreateApiView.as_view(), name='content_create'),
                   path(p.join(content, int_pk, update), ContentUpdateAPIView.as_view(), name='content_update'),
                   path(p.join(content, int_pk), ContentRetrieveApiView.as_view(), name='content_detail'),
                   path(p.join(content, int_pk, delete), ContentDestroyAPiView.as_view(), name='content_delete'),
                   # question urls
-                  path(p.join(questions, ), QuestionListApiView.as_view(), name='content_delete'),
-                  path(p.join(questions, int_pk), QuestionRetrieveApiView.as_view(), name='content_delete'),
+                  path(p.join(questions, ), QuestionListApiView.as_view(), name='question_list'),
+                  path(p.join(questions, int_pk), QuestionRetrieveApiView.as_view(), name='question_read'),
 
               ] + router.urls

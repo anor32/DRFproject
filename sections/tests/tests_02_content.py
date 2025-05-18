@@ -12,7 +12,7 @@ class ContentTestCase(APITestCase):
     def setUp(self):
         self.user = get_admin_user()
         response = self.client.post('/users/token/', {"email":self.user.email,'password':'qwerty'})
-        self.access_token = response.json.get('access')
+        self.access_token = response.json().get('access')
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
         self.test_section = Section.objects.create(
             title ="Test Section",
@@ -28,19 +28,20 @@ class ContentTestCase(APITestCase):
         data = {
             'section':self.test_section.id,
             'title': "Test Title Create",
-            "description": "Test Content Create"
+            "content": "Test Content Create"
 
         }
         response = self.client.post('/content/create/', data=data)
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.json().get('title'), "Test Title Create",)
-        self.assertEqual(response.json().get('description'), "Test Content Create")
+        self.assertEqual(response.json().get('content'), "Test Content Create")
 
     def test_08_content_deta(self):
         response = self.client.get(f'/content/{self.test_content.id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get('title'), "Test Title", )
-        self.assertEqual(response.json().get('description'), "Test Content")
+        self.assertEqual(response.json().get('content'), "Test Content")
 
     def test_09_content_update(self):
         data = {
@@ -63,17 +64,18 @@ class ContentTestCase(APITestCase):
         self.assertEqual(response.json()['results'][0]['title'], 'Test Title')
 
     def test_12_content_create_forbidden(self):
-        member = get_member_user()
-        response = self.client.post(f'/users/token/',{"email":member.email, 'password':'qwerty'})
-        self.access_token = response.json().get('access'),
+        self.user = get_member_user()
+
+        response = self.client.post(f'/users/token/', {"email": self.user.email, 'password': 'qwerty'})
+        self.access_token = response.json().get('access')
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
 
         data = {
-            'section': self.test_section.id,
-            'title': "Test Title Create",
-            "description": "Test Content Create"
+                'section': self.test_section.id,
+                'title': "Test Title Create",
+                "content": "Test Content Create"
 
         }
         response = self.client.post('/content/create/',data=data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.json().get('detail'), "У вас недостаточно прав для выполнения данного действия")
+        self.assertEqual(response.json().get('detail'), "У вас недостаточно прав для выполнения данного действия.")

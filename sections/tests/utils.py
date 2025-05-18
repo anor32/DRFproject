@@ -18,7 +18,7 @@ def get_member_user():
         role= UserRoles.MEMBER ,
         is_active=True,
         is_superuser=False,
-        is_staff=True
+        is_staff=False
     )
     user.set_password('qwerty')
     user.save()
