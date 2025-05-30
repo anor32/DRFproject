@@ -93,27 +93,48 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# local SSMS
+# DRIVER = os.getenv('MS_SQL_DRIVER')
+# HOST = os.getenv('MS_SQL_SERVER')
+# DATABASE = os.getenv('MS_SQL_DATABASE')
+# USER = os.getenv('MS_SQL_USER')
+# PASSWORD = os.getenv('MS_SQL_KEY')
+# PAD_DATABASE = os.getenv('MS_PAD_DATA_BASE')
 
-DRIVER = os.getenv('MS_SQL_DRIVER')
-HOST = os.getenv('MS_SQL_SERVER')
-DATABASE = os.getenv('MS_SQL_DATABASE')
-USER = os.getenv('MS_SQL_USER')
-PASSWORD = os.getenv('MS_SQL_KEY')
-PAD_DATABASE = os.getenv('MS_PAD_DATA_BASE')
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': DATABASE,
+#         'USER': USER,
+#         'PASSWORD':PASSWORD,
+#         'HOST':HOST,
+#         'PORT':'',
+#         'OPTIONS':
+#                 {
+#                 'driver':DRIVER,
+#                 },
+#     }
+# }
+#
 
+#docker
+database_name =os.getenv('POSTGRESQL_DATABASE_DOCKER')
+database_user = os.getenv('POSTGRESQL_USER')
+database_password = os.getenv('POSTGRESQL_PASSWORD_DOCKER')
+database_port = os.getenv('POSTGRESQL_PORT_DOCKER')
+doker_host = os.getenv('POSTGRESQL_HOST_DOCKER')
+local_host = os.getenv('POSTGRESQL_HOST')
 DATABASES = {
-    'default': {
-        'ENGINE': 'mssql',
-        'NAME': DATABASE,
-        'USER': USER,
-        'PASSWORD':PASSWORD,
-        'HOST':HOST,
-        'PORT':'',
-        'OPTIONS':
-                {
-                'driver':DRIVER,
-                },
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+        'NAME': database_name,
+        'USER': database_user,
+        'PASSWORD':database_password,
+        'HOST':doker_host, # для докера
+        # 'HOST': local_host, для локального подлюкчения
+        'PORT':database_port,
+
     }
 }
 
