@@ -118,7 +118,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 #
 
-#docker
+#docker and postgres
 database_name =os.getenv('POSTGRESQL_DATABASE_DOCKER')
 database_user = os.getenv('POSTGRESQL_USER')
 database_password = os.getenv('POSTGRESQL_PASSWORD_DOCKER')
