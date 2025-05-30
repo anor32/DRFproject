@@ -1,0 +1,12 @@
+Django
+python-dotenv
+djangorestframework
+pillow
+psycopg2-binary
+django-filter
+djangorestframework-simplejwt
+requests
+django-cors-headers
+drf-yasg
+redis
+psycopg2
