@@ -132,7 +132,7 @@ DATABASES = {
         'USER': database_user,
         'PASSWORD':database_password,
         'HOST':doker_host, # для докера
-        # 'HOST': local_host, для локального подлюкчения
+        # 'HOST': local_host, для локального подключения
         'PORT':database_port,
 
     }
